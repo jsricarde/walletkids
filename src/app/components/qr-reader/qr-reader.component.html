@@ -1,0 +1,14 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<div class="qr-reader-container">
+<h3>QR Reader</h3>
+<div *ngIf="availableDevices" class="selector-container">
+  <select class="devices-selector" (change)="onDeviceSelectChange($event.target.value)">
+    <option [selected]="!selectedDevice">No Device</option>
+    <option class="devices-option" *ngFor="let device of availableDevices" [value]="device.deviceId" [selected]="selectedDevice && device.deviceId === selectedDevice.deviceId">{{ device.label }}</option>
+  </select>
+</div>
+  <div [hidden]="!hasCameras" class="camera-container">
+    <zxing-scanner #scanner class="test-class" start="true" [device]="selectedDevice" (scanSuccess)="handleQrCodeResult($event)"></zxing-scanner>
+    <h2 *ngIf="!this.selectedDevice">No camera selected.</h2>
+  </div>
+</div>

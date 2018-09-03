@@ -1,0 +1,21 @@
+.qr-reader-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.qr-reader-container
+  .devices-selector {
+    max-width: 200px;
+  }
+  .selector-container {
+    padding: 10px 0;
+  }
+  h3 {
+    margin:0;
+  }
+  .camera-container {
+    width: 100%;
+    height: 100%
+  }
+
