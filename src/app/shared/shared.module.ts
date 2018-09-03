@@ -9,6 +9,9 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
+import { MatRadioModule } from '@angular/material/radio';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatCardModule } from '@angular/material/card';
 
 @NgModule({
@@ -24,6 +27,11 @@ import { MatCardModule } from '@angular/material/card';
     MatButtonModule,
     MatInputModule,
     MatSelectModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatRadioModule,
+    MatMenuModule,
+    MatSnackBarModule,
     MatCardModule
   ],
   declarations: [],
@@ -38,6 +46,11 @@ import { MatCardModule } from '@angular/material/card';
     MatButtonModule,
     MatInputModule,
     MatSelectModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatRadioModule,
+    MatMenuModule,
+    MatSnackBarModule,
     MatCardModule
   ]
 })
