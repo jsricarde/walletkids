@@ -1,0 +1,2 @@
+# walletkids
+busca ser una solución para que los padres puedan administrar facilmente la alimentación de su hijos en el colegio, y ofreciendo ademas, a padres y alumnos mayor seguridad, transparencia en la alimentación del niño, y garantizar que los dineros para la compra del refrigerio en la tienda, tengan ese unico fin, otorgando ademas con otros elementos como una alimentación saludable, que considere las restricciones medicas del niño (si las hubiese) y garantizando una buena administraciñon del dinero, a traves de un control de gasto predefinido
