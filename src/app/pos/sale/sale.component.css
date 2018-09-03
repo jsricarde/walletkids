@@ -1,0 +1,22 @@
+.product-container {
+  display: flex; /* or inline-flex */
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.product {
+  flex-basis: 30%; /* default auto */
+  height: 200px !important;
+}
+
+.product-img {
+  width: 100px;
+  height: 100px;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+.product-text {
+  margin-left: auto !important;
+  margin-right: auto !important;
+}

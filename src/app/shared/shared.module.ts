@@ -1,8 +1,9 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatDividerModule } from '@angular/material/divider';
+import { MatListModule } from '@angular/material/list';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
@@ -11,12 +12,16 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatCardModule } from '@angular/material/card';
 
 @NgModule({
   imports: [
     CommonModule,
     MatSidenavModule,
     MatDividerModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatListModule,
     MatToolbarModule,
     MatIconModule,
     MatButtonModule,
@@ -26,12 +31,16 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     ReactiveFormsModule,
     MatRadioModule,
     MatMenuModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatCardModule
   ],
   declarations: [],
   exports: [
     MatSidenavModule,
     MatDividerModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatListModule,
     MatToolbarModule,
     MatIconModule,
     MatButtonModule,
@@ -41,7 +50,8 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     ReactiveFormsModule,
     MatRadioModule,
     MatMenuModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatCardModule
   ]
 })
 export class SharedModule {}
