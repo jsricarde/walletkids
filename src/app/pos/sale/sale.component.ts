@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 export interface Product {
   name: string;
   url_image: string;
-  price: Number;
+  price: number;
   brand: string;
 }
 
