@@ -1,18 +1,18 @@
-import { Component, OnInit, Inject, ViewChild, Output } from "@angular/core";
-import * as scanner from "@zxing/ngx-scanner";
-import { Result } from "@zxing/library";
-import { MatDialog } from "@angular/material";
-import { ViewEncapsulation } from "@angular/core";
-import { EventEmitter } from "@angular/core";
+import { Component, OnInit, Inject, ViewChild, Output } from '@angular/core';
+import * as scanner from '@zxing/ngx-scanner';
+import { Result } from '@zxing/library';
+import { MatDialog } from '@angular/material';
+import { ViewEncapsulation } from '@angular/core';
+import { EventEmitter } from '@angular/core';
 
 @Component({
-  selector: "app-qr-reader",
-  templateUrl: "./qr-reader.component.html",
-  styleUrls: ["./qr-reader.component.css"],
+  selector: 'app-qr-reader',
+  templateUrl: './qr-reader.component.html',
+  styleUrls: ['./qr-reader.component.css'],
   encapsulation: ViewEncapsulation.None
 })
 export class QrReaderComponent implements OnInit {
-  @ViewChild("scanner")
+  @ViewChild('scanner')
   scanner: scanner.ZXingScannerComponent;
   hasCameras = false;
   hasPermission: boolean;
@@ -29,20 +29,11 @@ export class QrReaderComponent implements OnInit {
     this.scanner.camerasFound.subscribe((devices: MediaDeviceInfo[]) => {
       this.hasCameras = true;
       this.availableDevices = devices;
-
-      // selects the devices's back camera by default
-      // for (const device of devices) {
-      //     if (/back|rear|environment/gi.test(device.label)) {
-      //         this.scanner.changeDevice(device);
-      //         this.selectedDevice = device;
-      //         break;
-      //     }
-      // }
     });
 
     this.scanner.camerasNotFound.subscribe((devices: MediaDeviceInfo[]) => {
       console.error(
-        "An error has occurred when trying to enumerate your video-stream-enabled devices."
+        'An error has occurred when trying to enumerate your video-stream-enabled devices.'
       );
     });
 
