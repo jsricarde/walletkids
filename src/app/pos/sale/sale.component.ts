@@ -19,24 +19,33 @@ export class SaleComponent implements OnInit {
   selectedStudent: Student;
   selected: Product[];
   studentSubscription: Subscription;
-  constructor(private afs: AngularFirestore,
-              private studentService: StudentService) {
-  }
+  subtotal = 0;
+  constructor(
+    private afs: AngularFirestore,
+    private studentService: StudentService
+  ) {}
 
   ngOnInit() {
     this.getInitialData();
   }
 
-  getInitialData () {
+  getInitialData() {
     // getting all products
     this.productsCollection = this.afs.collection<Product>('products');
     this.products = this.productsCollection.valueChanges();
- }
-
-  onQrSelected(qr) {
-    this.studentSubscription = this.studentService.getStudentByDocId('5OED3E1pjV7AkdBWV0Rr')
-    .subscribe(student => this.selectedStudent = student);
   }
 
+  onQrSelected(qr) {
+    this.studentSubscription = this.studentService
+      .getStudentByDocId('5OED3E1pjV7AkdBWV0Rr')
+      .subscribe(student => (this.selectedStudent = student));
+  }
 
+  onNgModelChange(event: Event) {
+    this.subtotal = 0;
+    this.selected.forEach(product => {
+      const price = +product.price;
+      this.subtotal = this.subtotal + price;
+    });
+  }
 }

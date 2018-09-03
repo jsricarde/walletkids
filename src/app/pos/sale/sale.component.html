@@ -1,9 +1,12 @@
 <div class="sale-container">
-  <mat-selection-list class="product-container" #selectedProducts [(ngModel)]="selected">
+  <mat-selection-list class="product-container" #selectedProducts [(ngModel)]="selected" (ngModelChange)="onNgModelChange($event)">
     <mat-list-option class="product" *ngFor="let product of products | async" [value]="product">
       <img class="product-img" src={{product.url_image}} alt="">
-      <h4 class="product-text">{{product.brand}} {{product.name}}</h4>
+      <h4 class="product-text">{{product.name}} {{product.brand}}</h4>
     </mat-list-option>
   </mat-selection-list>
-  <app-qr-reader (qrSelected)="onQrSelected($event)"></app-qr-reader>
+  <div class="product-student">
+    <app-qr-reader class="product-reader" (qrSelected)="onQrSelected($event)"></app-qr-reader>
+    <p class="product-subtotal">Subtotal: {{subtotal | currency}}</p>
+  </div>
 </div>

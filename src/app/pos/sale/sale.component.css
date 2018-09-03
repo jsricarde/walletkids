@@ -6,6 +6,7 @@
   display: flex; /* or inline-flex */
   flex-direction: row;
   flex-wrap: wrap;
+  width: 80%;
 }
 
 .product {
@@ -23,4 +24,20 @@
 .product-text {
   margin-left: auto !important;
   margin-right: auto !important;
+}
+
+
+.product-subtotal {
+  font-size: 25px;
+  flex-basis: 30%; /* default auto */
+}
+
+.product-reader {
+  flex-basis: 30%; /* default auto */
+}
+
+.product-student {
+  right: 5%;
+  width: 20%;
+  position: fixed;
 }
