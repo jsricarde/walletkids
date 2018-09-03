@@ -8,7 +8,10 @@ import { AppComponent } from './app.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
+import { QrReaderComponent } from './components/qr-reader/qr-reader.component';
+import { ZXingScannerModule } from '@zxing/ngx-scanner';
+import { ComponentsModule } from './components/components.module';
+import { MAT_DIALOG_DEFAULT_OPTIONS, MAT_DIALOG_DATA } from '@angular/material';
 @NgModule({
   declarations: [
     AppComponent
@@ -19,9 +22,13 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule.enablePersistence(),
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    ZXingScannerModule.forRoot(),
+    ComponentsModule
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [
+    {provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: false}}],
+  bootstrap: [AppComponent],
+  entryComponents: [QrReaderComponent]
 })
 export class AppModule { }
