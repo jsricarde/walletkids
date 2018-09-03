@@ -12,10 +12,13 @@ import { QrReaderComponent } from './components/qr-reader/qr-reader.component';
 import { ZXingScannerModule } from '@zxing/ngx-scanner';
 import { ComponentsModule } from './components/components.module';
 import { MAT_DIALOG_DEFAULT_OPTIONS, MAT_DIALOG_DATA } from '@angular/material';
+import { LoginComponent } from './login/login.component';
+import { SharedModule } from './shared/shared.module';
+import { PosModule } from './pos/pos.module';
+import { ParentModule } from './parent/parent.module';
+
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
+  declarations: [AppComponent, LoginComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -24,11 +27,14 @@ import { MAT_DIALOG_DEFAULT_OPTIONS, MAT_DIALOG_DATA } from '@angular/material';
     AngularFirestoreModule.enablePersistence(),
     BrowserAnimationsModule,
     ZXingScannerModule.forRoot(),
-    ComponentsModule
+    ComponentsModule,
+    SharedModule,
+    PosModule,
+    ParentModule
   ],
   providers: [
     {provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: false}}],
   bootstrap: [AppComponent],
   entryComponents: [QrReaderComponent]
 })
-export class AppModule { }
+export class AppModule {}
