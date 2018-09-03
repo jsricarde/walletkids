@@ -1,0 +1,12 @@
+<mat-card>
+  <mat-card-title>Recarga de saldo</mat-card-title>
+  <mat-card-content>
+    <form class="charge-form" (ngSubmit)="onUpdateCharge()">
+      <mat-card-subtitle class="indent-subtitle">Saldo disponible: {{balance}}</mat-card-subtitle>
+      <mat-form-field class="charge-full-width">
+        <input matInput placeholder="Valor a Recargar" name="balance_to_add" [(ngModel)]="chargeData">
+      </mat-form-field>
+      <button mat-button type="submit">Recargar Saldo</button>
+    </form>
+  </mat-card-content>
+</mat-card>
