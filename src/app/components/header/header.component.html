@@ -1,8 +1,16 @@
 <mat-toolbar color="primary">
-  <mat-toolbar-row>
-    <button (click)="openSidenav()" mat-icon-button>
-      <mat-icon>menu</mat-icon>
-    </button>
-    <span>Waller kids</span>
+  <mat-toolbar-row id="header">
+    <div id="menu-section">
+      <button (click)="openSidenav()" mat-icon-button>
+        <mat-icon>menu</mat-icon>
+      </button>
+      <span>Wallet kids</span>
+    </div>
+    <div id="logout-section">
+      <button *ngIf="(authService.user | async); let user" mat-button [matMenuTriggerFor]="menu">{{user?.email}}</button>
+      <mat-menu #menu="matMenu">
+        <button (click)="logout()" mat-menu-item>Logout</button>
+      </mat-menu>
+    </div>
   </mat-toolbar-row>
 </mat-toolbar>

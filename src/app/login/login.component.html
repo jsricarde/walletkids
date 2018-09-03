@@ -1,3 +1,17 @@
-<p>
-  login works!
-</p>
+<div id="login-container">
+  <h1>Wallet Kids</h1>
+  {{ error_message }}
+  <form id="login-form" (ngSubmit)="login(loginForm.valid)" #loginForm="ngForm" autocomplete="off" novalidate>
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="Email" type="email" id="email" name="email" [(ngModel)]="email" required>
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="Password" type="password" name="password" [(ngModel)]="password" id="password" required>
+    </mat-form-field>
+    <mat-radio-group name="userType" [(ngModel)]="userType" id="account_type" required>
+      <mat-radio-button value="parent">Parent</mat-radio-button>
+      <mat-radio-button value="pos">POS</mat-radio-button>
+    </mat-radio-group>
+    <button mat-raised-button color="primary" [disabled]="!loginForm.valid || loading" type="submit">Login</button>
+  </form>
+</div>
