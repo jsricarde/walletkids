@@ -16,7 +16,9 @@ import { StudentService } from 'src/app/communication/student.service';
 export class SaleComponent implements OnInit {
   private productsCollection: AngularFirestoreCollection<Product>;
   products: Observable<Product[]>;
+  allProducts = new Array<any>();
   selectedStudent: Student;
+  nonAllowedProducts = new Array<Product>();
   selected: Product[];
   studentSubscription: Subscription;
   subtotal = 0;
@@ -33,12 +35,37 @@ export class SaleComponent implements OnInit {
     // getting all products
     this.productsCollection = this.afs.collection<Product>('products');
     this.products = this.productsCollection.valueChanges();
-  }
+    /*this.products.subscribe(products => {
+      const temp = products;
+      this.allProducts = temp;
+    });*/
+ }
 
   onQrSelected(qr) {
-    this.studentSubscription = this.studentService
-      .getStudentByDocId('5OED3E1pjV7AkdBWV0Rr')
-      .subscribe(student => (this.selectedStudent = student));
+    this.studentSubscription = this.studentService.getStudentByDocId(qr)
+    .subscribe(student => {
+      this.selectedStudent = student;
+      this.getNonAllowedProducts();
+    });
+  }
+
+  updateGrid() {
+    this.products.subscribe(products =>
+        products.map(pr => {
+          this.allProducts.push({
+            ...pr,
+            disable: this.nonAllowedProducts.some(product => product.name === pr.name)
+          });
+        })
+    );
+  }
+
+  getNonAllowedProducts() {
+    this.studentService.getProductsByDocumentId(this.selectedStudent.blocked_products)
+      .subscribe(result => {
+        result.subscribe(val => this.nonAllowedProducts.push(val));
+        this.updateGrid();
+      });
   }
 
   onNgModelChange(event: Event) {

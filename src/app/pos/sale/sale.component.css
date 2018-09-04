@@ -41,3 +41,8 @@
   width: 20%;
   position: fixed;
 }
+
+.product-student h3 {
+  padding: 10px;
+  text-align: center;
+}

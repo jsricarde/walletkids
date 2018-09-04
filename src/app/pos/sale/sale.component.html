@@ -1,12 +1,13 @@
 <div class="sale-container">
   <mat-selection-list class="product-container" #selectedProducts [(ngModel)]="selected" (ngModelChange)="onNgModelChange($event)">
-    <mat-list-option class="product" *ngFor="let product of products | async" [value]="product">
+    <mat-list-option  [disabled]="product.disable" [ngStyle]="{'opacity':product.disable? '0.2' : '1' }" class="product" *ngFor="let product of allProducts" [value]="product">
       <img class="product-img" src={{product.url_image}} alt="">
       <h4 class="product-text">{{product.name}} {{product.brand}}</h4>
     </mat-list-option>
   </mat-selection-list>
   <div class="product-student">
     <app-qr-reader class="product-reader" (qrSelected)="onQrSelected($event)"></app-qr-reader>
+    <h3>Studiante: {{selectedStudent?.name}}</h3>
     <p class="product-subtotal">Subtotal: {{subtotal | currency}}</p>
   </div>
 </div>

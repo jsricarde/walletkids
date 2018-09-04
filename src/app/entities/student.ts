@@ -10,4 +10,5 @@ export interface Student {
   max: string;
   min: string;
   url_image: string;
+  blocked_products: Array<any>;
 }
