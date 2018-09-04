@@ -8,6 +8,7 @@
   <div class="product-student">
     <app-qr-reader class="product-reader" (qrSelected)="onQrSelected($event)"></app-qr-reader>
     <h3>Studiante: {{selectedStudent?.name}}</h3>
-    <p class="product-subtotal">Subtotal: {{subtotal | currency}}</p>
+    <p class="product-subtotal">Total: {{subtotal | currency}}</p>
+    <button class="btn-pagar" (click)="pay()">Pagar</button>
   </div>
 </div>
