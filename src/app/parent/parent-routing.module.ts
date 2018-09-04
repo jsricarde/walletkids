@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { ParentComponent } from './parent/parent.component';
 import { StudentComponent } from './student/student.component';
 import { ChargeComponent } from './charge/charge.component';
+import { ReportComponent } from './report/report.component';
 import { AuthGuard } from '../shared/auth.guard';
 
 const routes: Routes = [
@@ -19,6 +20,11 @@ const routes: Routes = [
       {
         path: 'charge',
         component: ChargeComponent,
+        pathMatch: 'full'
+      },
+      {
+        path: 'report',
+        component: ReportComponent,
         pathMatch: 'full'
       }
     ]

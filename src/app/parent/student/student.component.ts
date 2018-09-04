@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {AngularFirestore, AngularFirestoreCollection} from 'angularfire2/firestore';
+import {
+  AngularFirestore,
+  AngularFirestoreCollection
+} from 'angularfire2/firestore';
 
 export interface Product {
   name: string;
@@ -32,26 +35,32 @@ export interface Student {
   styleUrls: ['./student.component.css']
 })
 export class StudentComponent implements OnInit {
-
   private studentsCollection: AngularFirestoreCollection<Student>;
-  public student: Student = { 'balance': null,
-    'day_ceiling_max': null,
-    'min_value_amount': null,
-    'date_of_birth': null,
-    'phone_number': null,
-    'name': null,
-    'status': null,
-    'url_image': null,
-    'time_window': {'min': null, 'max': null},
-    'blocked_products': null};
+  public student: Student = {
+    balance: null,
+    day_ceiling_max: null,
+    min_value_amount: null,
+    date_of_birth: null,
+    phone_number: null,
+    name: null,
+    status: null,
+    url_image: null,
+    time_window: { min: null, max: null },
+    blocked_products: null
+  };
   constructor(private afs: AngularFirestore) {
     this.studentsCollection = afs.collection<Student>('students');
   }
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
   addStudent() {
-    this.studentsCollection.add(this.student).then(result => {console.log(result); }).catch(error => {console.log('error: ', error); });
+    this.studentsCollection
+      .add(this.student)
+      .then(result => {
+        console.log(result);
+      })
+      .catch(error => {
+        console.log('error: ', error);
+      });
   }
-
 }
