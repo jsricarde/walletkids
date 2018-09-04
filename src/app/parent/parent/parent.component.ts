@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { SidenavService } from '../../shared/sidenav.service';
+import { MatSidenav } from '@angular/material';
 
 @Component({
   selector: 'app-parent',
@@ -6,10 +8,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./parent.component.css']
 })
 export class ParentComponent implements OnInit {
+  @ViewChild('sidenav')
+  public sidenav: MatSidenav;
 
-  constructor() { }
+  constructor(private sidenavService: SidenavService) {}
 
   ngOnInit() {
+    this.sidenavService.setSidenav(this.sidenav);
   }
-
 }

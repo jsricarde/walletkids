@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { SidenavService } from '../../shared/sidenav.service';
+import { MatSidenav } from '@angular/material';
 
 @Component({
   selector: 'app-pos',
@@ -6,7 +8,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./pos.component.css']
 })
 export class PosComponent implements OnInit {
-  constructor() {}
+  @ViewChild('sidenav')
+  public sidenav: MatSidenav;
+  constructor(private sidenavService: SidenavService) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.sidenavService.setSidenav(this.sidenav);
+  }
 }
