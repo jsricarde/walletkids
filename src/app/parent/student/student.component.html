@@ -1,3 +1,35 @@
-<p>
-  student works!
-</p>
+<mat-card>
+  <mat-card-title>Registro básico del estudiante</mat-card-title>
+  <mat-card-content>
+  <form class="student-form" (ngSubmit)="addStudent()">
+    <mat-form-field class="student-full-width">
+      <input matInput placeholder="Nombre" name="name" [(ngModel)]="student.name">
+    </mat-form-field>
+    <mat-form-field class="student-full-width">
+    <input matInput placeholder="Monto máximo por día" name="day_ceiling_max" [(ngModel)]="student.day_ceiling_max">
+  </mat-form-field>
+    <mat-form-field class="student-full-width">
+      <input matInput placeholder="Saldo minimo de alerta" name="min_value_amount" [(ngModel)]="student.min_value_amount">
+    </mat-form-field>
+    <mat-form-field class="student-full-width">
+      <input matInput placeholder="Fecha de nacimiento del niño" name="date_of_birth" [(ngModel)]="student.date_of_birth">
+    </mat-form-field>
+    <mat-form-field class="student-full-width">
+      <input matInput placeholder="Telefono de contacto" name="phone_number" [(ngModel)]="student.phone_number">
+    </mat-form-field>
+    <mat-divider></mat-divider>
+    <mat-card-subtitle class="indent-subtitle">Rango de tiempo para que el niño tome el refrigerio</mat-card-subtitle>
+    <mat-form-field class="student-full-width">
+    <input matInput placeholder="Desde" name="time_window_min" [(ngModel)]="student.time_window.min">
+    </mat-form-field>
+    <mat-form-field class="student-full-width">
+      <input matInput placeholder="Hasta" name="time_window_max" [(ngModel)]="student.time_window.max">
+    </mat-form-field>
+    <mat-divider></mat-divider>
+    <mat-form-field class="student-full-width">
+      <input matInput placeholder="Foto del niño" name="balance" [(ngModel)]="student.balance">
+    </mat-form-field>
+    <button mat-button type="submit">Guardar</button>
+    </form>
+  </mat-card-content>
+</mat-card>

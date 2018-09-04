@@ -8,6 +8,7 @@ import { Observable, Subscription } from 'rxjs';
 import { Product } from '../../entities/products';
 import { Student } from 'src/app/entities/student';
 import { StudentService } from 'src/app/communication/student.service';
+
 @Component({
   selector: 'app-sale',
   templateUrl: './sale.component.html',
