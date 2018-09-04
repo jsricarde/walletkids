@@ -8,6 +8,7 @@ import { Observable, Subscription } from 'rxjs';
 import { Product } from '../../entities/products';
 import { Student } from 'src/app/entities/student';
 import { StudentService } from 'src/app/communication/student.service';
+import { AuthService } from 'src/app/login/auth.service';
 
 @Component({
   selector: 'app-sale',
@@ -17,15 +18,20 @@ import { StudentService } from 'src/app/communication/student.service';
 export class SaleComponent implements OnInit {
   private productsCollection: AngularFirestoreCollection<Product>;
   products: Observable<Product[]>;
+  selledItemsCollection: AngularFirestoreCollection<any>;
   allProducts = new Array<any>();
   selectedStudent: Student;
   nonAllowedProducts = new Array<Product>();
   selected: Product[];
   studentSubscription: Subscription;
   subtotal = 0;
+  user: any;
+  idStudent: string;
+
   constructor(
     private afs: AngularFirestore,
-    private studentService: StudentService
+    private studentService: StudentService,
+    private authService: AuthService
   ) {}
 
   ngOnInit() {
@@ -36,13 +42,17 @@ export class SaleComponent implements OnInit {
     // getting all products
     this.productsCollection = this.afs.collection<Product>('products');
     this.products = this.productsCollection.valueChanges();
-    /*this.products.subscribe(products => {
-      const temp = products;
-      this.allProducts = temp;
-    });*/
- }
+
+    // getting selled items
+    this.selledItemsCollection = this.afs.collection<any>('selled_items');
+
+    // getting seller
+    this.authService.user
+      .subscribe(user => this.user = user);
+  }
 
   onQrSelected(qr) {
+    this.idStudent = qr;
     this.studentSubscription = this.studentService.getStudentByDocId(qr)
     .subscribe(student => {
       this.selectedStudent = student;
@@ -75,5 +85,23 @@ export class SaleComponent implements OnInit {
       const price = +product.price;
       this.subtotal = this.subtotal + price;
     });
+  }
+
+  pay () {
+    const entity = this.getSelledEntity();
+    this.selledItemsCollection.add(entity)
+      .then(result => { location.reload(); })
+      .catch(error => {console.log('error: ', error); });
+  }
+
+  getSelledEntity () {
+   const entity = {
+      date: '02/08/2018',
+      id_seller: this.user.uid,
+      id_student: this.idStudent,
+      products: this.selected,
+      total_selled: this.subtotal
+   };
+   return entity;
   }
 }
