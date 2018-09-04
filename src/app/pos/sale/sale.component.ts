@@ -1,9 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {
-  AngularFirestore,
-  AngularFirestoreCollection,
-  AngularFirestoreDocument
-} from 'angularfire2/firestore';
+import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from 'angularfire2/firestore';
 import { Observable, Subscription } from 'rxjs';
 import { Product } from '../../entities/products';
 import { Student } from 'src/app/entities/student';
@@ -39,7 +35,6 @@ export class SaleComponent implements OnInit {
   }
 
   getInitialData() {
-    // getting all products
     this.productsCollection = this.afs.collection<Product>('products');
     this.products = this.productsCollection.valueChanges();
 
@@ -47,14 +42,12 @@ export class SaleComponent implements OnInit {
     this.selledItemsCollection = this.afs.collection<any>('selled_items');
 
     // getting seller
-    this.authService.user
-      .subscribe(user => this.user = user);
+    this.authService.user.subscribe(user => (this.user = user));
   }
 
   onQrSelected(qr) {
     this.idStudent = qr;
-    this.studentSubscription = this.studentService.getStudentByDocId(qr)
-    .subscribe(student => {
+    this.studentSubscription = this.studentService.getStudentByDocId(qr).subscribe(student => {
       this.selectedStudent = student;
       this.getNonAllowedProducts();
     });
@@ -62,21 +55,20 @@ export class SaleComponent implements OnInit {
 
   updateGrid() {
     this.products.subscribe(products =>
-        products.map(pr => {
-          this.allProducts.push({
-            ...pr,
-            disable: this.nonAllowedProducts.some(product => product.name === pr.name)
-          });
-        })
+      products.map(pr => {
+        this.allProducts.push({
+          ...pr,
+          disable: this.nonAllowedProducts.some(product => product.name === pr.name)
+        });
+      })
     );
   }
 
   getNonAllowedProducts() {
-    this.studentService.getProductsByDocumentId(this.selectedStudent.blocked_products)
-      .subscribe(result => {
-        result.subscribe(val => this.nonAllowedProducts.push(val));
-        this.updateGrid();
-      });
+    this.studentService.getProductsByDocumentId(this.selectedStudent.blocked_products).subscribe(result => {
+      result.subscribe(val => this.nonAllowedProducts.push(val));
+      this.updateGrid();
+    });
   }
 
   onNgModelChange(event: Event) {
@@ -87,21 +79,26 @@ export class SaleComponent implements OnInit {
     });
   }
 
-  pay () {
+  pay() {
     const entity = this.getSelledEntity();
-    this.selledItemsCollection.add(entity)
-      .then(result => { location.reload(); })
-      .catch(error => {console.log('error: ', error); });
+    this.selledItemsCollection
+      .add(entity)
+      .then(result => {
+        location.reload();
+      })
+      .catch(error => {
+        console.log('error: ', error);
+      });
   }
 
-  getSelledEntity () {
-   const entity = {
+  getSelledEntity() {
+    const entity = {
       date: '02/08/2018',
       id_seller: this.user.uid,
       id_student: this.idStudent,
       products: this.selected,
       total_selled: this.subtotal
-   };
-   return entity;
+    };
+    return entity;
   }
 }

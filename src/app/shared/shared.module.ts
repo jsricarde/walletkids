@@ -13,6 +13,7 @@ import { MatRadioModule } from '@angular/material/radio';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatCardModule } from '@angular/material/card';
+import { SidenavService } from './sidenav.service';
 
 @NgModule({
   imports: [
@@ -52,6 +53,7 @@ import { MatCardModule } from '@angular/material/card';
     MatMenuModule,
     MatSnackBarModule,
     MatCardModule
-  ]
+  ],
+  providers: [SidenavService]
 })
 export class SharedModule {}
