@@ -1,0 +1,7 @@
+<mat-list *ngFor="let item of sellItems | async">
+  <mat-list-item> {{item.date}} {{item.total_selled | currency}}</mat-list-item>
+  <hr />
+  <mat-list *ngFor="let product of item.products">
+    <mat-list-item> {{product.name}} </mat-list-item>
+  </mat-list>
+</mat-list>
